@@ -622,6 +622,37 @@
             }
         }
 
+        .info-texttaitoru {
+            position: relative;
+            /* ← 上下移動を有効にする */
+            top: -13px;
+            /* ← 上に8pxずらす（数値調整可） */
+            margin-top: 0;
+            /* ← 上のマージンは0にしておくと自然 */
+            margin-bottom: 0px;
+            font-size: 13px;
+            color: #000000;
+            line-height: 1.5;
+            text-align: center;
+            word-wrap: break-word;
+            background-color: #ffffff;
+            padding: 0px;
+            border-radius: 6 6 6px 6px;
+            border: 1px solid black;
+            border-top: 1px solid black;
+            /* ← 上に横線を追加 */
+        }
+
+        /* スマホ対応 */
+        @media (max-width: 768px) {
+            .info-texttaitoru {
+                font-size: 11.5px;
+                top: -13px;
+                /* ← モバイルでは少し控えめに上にずらす */
+                line-height: 2.0;
+            }
+        }
+
         .symptoms,
         .options {
             display: block;
@@ -1066,6 +1097,9 @@
 
     <div class="container">
         <h1 class="title">石垣島てぃーだハウス<br>予約フォーム</h1>
+<div class="info-texttaitoru" style="color: red;">
+  ※2ヶ月先のご予定はチャットにてご相談下さい。
+</div>
         <div class="label">お客様名<span class="required">必須</span></div>
         <input type="text" id="name" placeholder="お名前を入力してください" oninput="saveInput('name')">
 
@@ -2159,9 +2193,9 @@ const times = [
                         continue;
                     }
 
-// 30日後以降はすべて✕にする
+// 60日後以降はすべて✕にする
 const maxDate = new Date(now);
-maxDate.setDate(maxDate.getDate() + 30);
+maxDate.setDate(maxDate.getDate() + 60);
 if (slotStart > maxDate) {
     cell.textContent = '✕';
     cell.classList.add('unavailable');
